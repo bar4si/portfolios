@@ -80,7 +80,7 @@ def gerar_indice():
         cartoes.append(
             f'<a class="cartao" href="{e(nome)}/">'
             f'<figure><img src="{foto(pasta, capa["foto"], ALTURA_CAPA, 80)}" alt="Capa de {e(t["titulo"])} {e(t["titulo_italico"])}"></figure>'
-            f'<div class="lab">{e(capa["chamada"])}</div>'
+            f'<div class="lab">{e(capa["chamada"].split("·")[-1].strip())}</div>'  # so a data
             f'<h2>{e(t["titulo"])} <em>{e(t["titulo_italico"])}</em></h2>'
             f'<p>{e(t["subtitulo"])}</p></a>')
 

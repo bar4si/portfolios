@@ -16,16 +16,17 @@ body{-webkit-font-smoothing:antialiased;min-height:100vh;padding:clamp(2.5rem,9v
 .lab{font-family:var(--sans);font-size:clamp(.68rem,.8vw,.85rem);letter-spacing:.28em;text-transform:uppercase;color:var(--mute)}
 header{border-bottom:1px solid var(--line);padding-bottom:clamp(1.5rem,4vh,3rem);margin-bottom:clamp(2rem,6vh,4.5rem)}
 h1{font-size:clamp(2.8rem,9vw,7.5rem);font-weight:400;font-style:italic;line-height:.95;letter-spacing:-.025em;margin:.25em 0 0}
-.lista{display:flex;flex-wrap:wrap;gap:clamp(2rem,4vw,4rem)}
-.cartao{display:block;width:clamp(15rem,24vw,21rem);color:inherit;text-decoration:none}
-.cartao figure{margin:0 0 1.4rem;aspect-ratio:9/16;overflow:hidden;background:#111}
+.lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(11.5rem,1fr));gap:clamp(2rem,3vw,3rem) clamp(1.25rem,2.2vw,2.25rem)}
+.cartao{display:block;min-width:0;color:inherit;text-decoration:none}
+.cartao .lab{font-size:.62rem;letter-spacing:.22em}
+.cartao figure{margin:0 0 .9rem;aspect-ratio:9/16;overflow:hidden;background:#111}
 .cartao img{display:block;width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .4s,transform 1.6s ease-out}
 .cartao:hover img,.cartao:focus-visible img{opacity:1;transform:scale(1.03)}
 .cartao:focus-visible{outline:2px solid #fff;outline-offset:6px}
-.cartao h2{font-size:clamp(1.7rem,2.6vw,2.5rem);font-weight:400;line-height:1.02;letter-spacing:-.01em;margin:.7rem 0 .5rem}
+.cartao h2{font-size:1.4rem;font-weight:400;line-height:1.08;letter-spacing:-.01em;margin:.45rem 0 .35rem;overflow-wrap:anywhere}
 .cartao h2 em{color:#bdb9b0}
-.cartao p{font-size:1.1rem;font-style:italic;color:var(--mute);margin:0}
-@media (max-width:40rem){.cartao{width:100%}}
+.cartao p{font-size:.95rem;font-style:italic;line-height:1.3;color:var(--mute);margin:0}
+@media (max-width:40rem){.lista{grid-template-columns:1fr 1fr}.cartao h2{font-size:1.2rem}.cartao p{font-size:.88rem}}
 @media (prefers-reduced-motion:reduce){.cartao img{transition:none}.cartao:hover img{transform:none}}
 </style>
 </head>
