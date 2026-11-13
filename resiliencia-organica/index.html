@@ -78,6 +78,9 @@ img{display:block}
 .fim p{font-size:clamp(.9rem,2.15vh,1.25rem);line-height:1.6;color:#c9c5bd;margin:0 0 1.6vh}
 .fim p.s{font-family:var(--sans);font-size:clamp(.68rem,1.5vh,.9rem);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);line-height:2}
 
+.fim .volta-cel{display:none;margin-top:2.5rem}
+.fim .volta-cel a{color:var(--ink);text-decoration:none}
+
 /* hud */
 .hud{position:fixed;left:0;right:0;bottom:0;z-index:5;pointer-events:none;font-family:var(--sans);font-size:clamp(.62rem,1.4vh,.82rem);letter-spacing:.24em;text-transform:uppercase;color:#d8d4cc;text-shadow:0 0 6px #000,0 0 2px #000}
 .hud .row{display:flex;justify-content:space-between;align-items:center;padding:0 clamp(1rem,2.2vw,2.5rem) 2.2vh}
@@ -98,6 +101,20 @@ img{display:block}
   .tx,.rev .tx{align-items:flex-start;text-align:left;gap:4vh;padding:2.5rem 1.25rem 3.5rem}
   .pair .cap:last-child{text-align:left;align-self:flex-start}
   .capa{flex-direction:column-reverse}
+  .capa h1{font-size:clamp(2.4rem,15vw,6rem);overflow-wrap:anywhere}
+  .capa .sub{font-size:clamp(1.1rem,5.5vw,2rem);margin-top:1.2rem}
+  .num,.pair .num{font-size:clamp(4rem,34vw,10rem);margin-bottom:.6rem}
+  .cap h2,.pair .cap h2{font-size:clamp(1.9rem,10.5vw,4rem);margin-bottom:.9rem}
+  .cap p,.pair .cap p{font-size:1.1rem}
+  .ato .rom{font-size:clamp(5rem,42vw,13rem)}
+  .ato h2{font-size:clamp(2.2rem,12.5vw,5rem)}
+  .ato p{font-size:1.15rem}
+  .edit .ans{font-size:clamp(1.7rem,9vw,3rem)}
+  .edit p{font-size:1.1rem}
+  .fim h2{font-size:clamp(1.6rem,9vw,3rem)}
+  .fim p{font-size:1.05rem}
+  .fim p.s{font-size:.75rem}
+  .fim .volta-cel{display:block}
   .edit{padding:3rem 1.25rem}.edit .cols{grid-template-columns:1fr}
   .ato{padding:4rem 0}
   .fim{flex-direction:column;padding:3rem 1.25rem;--t:auto}
@@ -146,7 +163,7 @@ const html=P.map((p,i)=>{
  }
  return `<section class="pg fim" style="--c:${Math.ceil(Object.keys(C).length/2)}"><div class="grid">${Object.keys(C).map(n=>`<a data-go="${n}" title="${C[n].h}">${im(n)}<span>${pad(n)}</span></a>`).join('')}</div>
   <div class="cr"><div class="lab">${T.final.chamada}</div><h2>${TIT}</h2>
-  <p>${T.final.texto}</p>${T.final.creditos.map(c=>`<p class="s">${c.rotulo}<br><span style="color:var(--ink)">${c.linhas.join('<br>')}</span></p>`).join('')}</div></section>`;
+  <p>${T.final.texto}</p>${T.final.creditos.map(c=>`<p class="s">${c.rotulo}<br><span style="color:var(--ink)">${c.linhas.join('<br>')}</span></p>`).join('')}<p class="s volta-cel"><a href="../index.html">&#8592; Portfólios</a></p></div></section>`;
 }).join('');
 const m=document.getElementById('m');m.innerHTML=html;
 const pgs=[...m.children],ctr=document.getElementById('ctr'),bar=document.getElementById('bar');
