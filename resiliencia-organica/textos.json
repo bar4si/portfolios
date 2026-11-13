@@ -1,0 +1,139 @@
+{
+  "titulo": "Resiliência",
+  "titulo_italico": "Orgânica",
+  "subtitulo": "A natureza que retoma",
+  "capa": {
+    "foto": 5,
+    "chamada": "Ensaio fotográfico · Novembro de 2026",
+    "autor": "Bruno Roth",
+    "linhas": [
+      "Trabalho de conclusão de curso",
+      "Sombras da Alemanha e Luzes da Ásia"
+    ]
+  },
+  "editorial": {
+    "chamada": "A série em duas perguntas",
+    "blocos": [
+      {
+        "pergunta": "Qual é a história que contarei?",
+        "resposta": "É sobre um lugar.",
+        "paragrafos": [
+          "Um lugar antigo, de paredes manchadas, beirais gastos, fios e chaminés. Tudo ali foi construído para ficar, e tudo envelhece.",
+          "Nas frestas desse desgaste, sem ser plantada por ninguém, a vida vegetal volta: primeiro um broto, depois uma raiz, por fim a copa inteira."
+        ]
+      },
+      {
+        "pergunta": "Qual é o viés que darei?",
+        "resposta": "Sombra e luz.",
+        "paragrafos": [
+          "A sombra é o tempo sobre a matéria: o limo, a rachadura, o vidro quebrado. A luz é o que nasce exatamente ali.",
+          "O olhar é otimista. Doze fotografias em preto e branco, em três atos, sobre algo que não desiste."
+        ]
+      }
+    ]
+  },
+  "atos": {
+    "I": {
+      "titulo": "A pedra",
+      "frase": "O que construímos para durar.",
+      "fundo": 1
+    },
+    "II": {
+      "titulo": "A fresta",
+      "frase": "Onde a matéria cede um milímetro, a vida se instala.",
+      "fundo": 6
+    },
+    "III": {
+      "titulo": "A retomada",
+      "frase": "Aos poucos, o que era detalhe passa a ser a paisagem.",
+      "fundo": 12
+    }
+  },
+  "fotos": {
+    "1": {
+      "titulo": "Cúpula",
+      "legenda": "A pedra aponta para o céu, firme, feita para durar. Mas olhe de novo: ao pé da cúpula, o verde já começou."
+    },
+    "2": {
+      "titulo": "Beiral",
+      "legenda": "No beiral antigo, o limo virou solo e o solo virou jardim. Ao fundo, fora de foco, o prédio novo ainda não sabe disso."
+    },
+    "3": {
+      "titulo": "Equilibrista",
+      "legenda": "Sem terra e sem vaso. Presa a um cabo de aço, vive de ar e de chuva."
+    },
+    "4": {
+      "titulo": "Pauta",
+      "legenda": "Os fios desenham uma pauta contra a parede. A planta é a única nota escrita nela."
+    },
+    "5": {
+      "titulo": "Raiz",
+      "legenda": "A árvore nasceu no alto da platibanda e desce pela parede em raízes, à procura do chão."
+    },
+    "6": {
+      "titulo": "Sombra e broto",
+      "legenda": "No vidro martelado, a sombra ocupa quase tudo. No canto do parapeito, pequeno, o broto."
+    },
+    "7": {
+      "titulo": "Trama",
+      "legenda": "A tela foi posta para fechar a passagem. As folhas passaram por ela."
+    },
+    "8": {
+      "titulo": "Telhado",
+      "legenda": "Vidraças quebradas, limo escorrendo pela parede e, sobre as telhas, um jardim que ninguém plantou."
+    },
+    "9": {
+      "titulo": "Chaminé",
+      "legenda": "Já não sai fumaça. A trepadeira a vestiu inteira e seguiu para o telhado."
+    },
+    "10": {
+      "titulo": "Moldura",
+      "legenda": "A torre ainda é a mais alta, mas agora é vista por entre galhos. Quem emoldura quem?"
+    },
+    "11": {
+      "titulo": "Hospedeira",
+      "legenda": "A própria árvore virou casa de outras plantas. Os fios da cidade passam por baixo, finos."
+    },
+    "12": {
+      "titulo": "Copa",
+      "legenda": "No fim, só a copa. O construído saiu do quadro."
+    }
+  },
+  "final": {
+    "chamada": "A série",
+    "texto": "Doze fotografias sobre a vida que insiste em voltar onde a construção envelhece.",
+    "creditos": [
+      {
+        "rotulo": "Fotografia e edição",
+        "linhas": [
+          "Bruno Roth",
+          "@brunofroth"
+        ]
+      },
+      {
+        "rotulo": "Trabalho de conclusão de curso",
+        "linhas": [
+          "Sombras da Alemanha e Luzes da Ásia",
+          "Gerson Turelly Fotografia · 24.11.2026"
+        ]
+      }
+    ]
+  },
+  "paginas": [
+    {"tipo": "capa"},
+    {"tipo": "editorial"},
+    {"tipo": "ato", "ato": "I"},
+    {"tipo": "foto", "ato": "I", "fotos": [1]},
+    {"tipo": "ato", "ato": "II"},
+    {"tipo": "foto", "ato": "II", "fotos": [2]},
+    {"tipo": "foto", "ato": "II", "fotos": [3, 4]},
+    {"tipo": "foto", "ato": "II", "fotos": [5]},
+    {"tipo": "foto", "ato": "II", "fotos": [6, 7]},
+    {"tipo": "ato", "ato": "III"},
+    {"tipo": "foto", "ato": "III", "fotos": [8]},
+    {"tipo": "foto", "ato": "III", "fotos": [9]},
+    {"tipo": "foto", "ato": "III", "fotos": [10, 11]},
+    {"tipo": "foto", "ato": "III", "fotos": [12]},
+    {"tipo": "final"}
+  ]
+}

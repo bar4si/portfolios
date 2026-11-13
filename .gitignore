@@ -1,0 +1,7 @@
+# Fotos originais em alta: o HTML gerado ja leva as versoes reduzidas
+*/images/
+
+# Documentos que nao fazem parte do site
+*.pdf
+
+__pycache__/

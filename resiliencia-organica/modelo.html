@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resiliência Orgânica — Bruno Roth</title>
+<style>
+:root{
+  --bg:#0a0a0a; --ink:#ece9e2; --mute:#8f8c85; --faint:#6a6761; --line:#262523;
+  --serif:"Palatino Linotype","Book Antiqua",Palatino,"Iowan Old Style",Georgia,serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);overflow:hidden}
+body{-webkit-font-smoothing:antialiased;cursor:default;user-select:none}
+img{display:block}
+
+.pg{position:fixed;inset:0;display:flex;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility 0s .7s;background:var(--bg)}
+.pg.on{opacity:1;visibility:visible;transition:opacity .7s ease;z-index:1}
+.rev{flex-direction:row-reverse}
+
+.ph{height:100vh;aspect-ratio:9/16;flex:none;margin:0;overflow:hidden;background:#111}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 2.4s ease-out}
+.pg.on .ph img{transform:none}
+.phs{display:flex;gap:.8vh;flex:none;align-items:center}
+.pair{--h:min(100vh,calc((100vw - 24rem)*8/9))}
+.pair .ph{height:var(--h)}
+
+.lab{font-family:var(--sans);font-size:clamp(.68rem,1.55vh,.95rem);letter-spacing:.28em;text-transform:uppercase;color:var(--mute)}
+.tx{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between;padding:7vh clamp(1.5rem,4.5vw,6rem) 9vh}
+.rev .tx{align-items:flex-end;text-align:right}
+.cap{max-width:30rem}
+.num{font-size:clamp(4rem,21vh,15rem);line-height:.9;color:transparent;-webkit-text-stroke:1px var(--faint);font-style:italic;letter-spacing:-.02em;margin-bottom:2vh}
+.cap h2{font-size:clamp(1.9rem,6.6vh,5rem);font-weight:400;line-height:1.02;margin:0 0 2.2vh;letter-spacing:-.01em}
+.cap p{font-size:clamp(1rem,2.7vh,1.6rem);line-height:1.5;color:#c9c5bd;margin:0}
+.pair{align-items:center}
+.pair .tx{align-self:stretch;justify-content:space-between;padding-left:clamp(1.2rem,3vw,4rem);padding-right:clamp(1.2rem,3vw,4rem)}
+.pair .lab{align-self:center;text-align:center}
+.pair .cap:last-child{text-align:right;align-self:flex-end}
+.pair .num{font-size:clamp(2.6rem,10vh,7rem);margin-bottom:1vh}
+.pair .cap h2{font-size:clamp(1.5rem,4.6vh,3.4rem);margin-bottom:1.4vh}
+.pair .cap p{font-size:clamp(.95rem,2.3vh,1.35rem)}
+
+/* capa */
+.capa .tx{justify-content:space-between}
+.capa h1{font-size:clamp(3rem,15.5vh,11rem);font-weight:400;line-height:.92;margin:0;letter-spacing:-.025em}
+.capa h1 em{display:block;font-style:italic;color:#bdb9b0}
+.capa .sub{font-size:clamp(1.1rem,3.4vh,2.2rem);font-style:italic;color:var(--mute);margin-top:3.5vh}
+.capa .by{font-family:var(--sans);font-size:clamp(.75rem,1.8vh,1.05rem);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);line-height:2}
+.capa .by b{color:var(--ink);font-weight:500}
+
+/* editorial */
+.edit{flex-direction:column;justify-content:center;padding:8vh clamp(1.5rem,8vw,10rem)}
+.edit .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,7vw,8rem);margin-top:7vh}
+.edit h3{font-family:var(--sans);font-size:clamp(.72rem,1.7vh,1rem);letter-spacing:.26em;text-transform:uppercase;color:var(--mute);font-weight:400;margin:0 0 2.5vh;padding-top:2.5vh;border-top:1px solid var(--faint)}
+.edit .ans{font-size:clamp(1.7rem,5.6vh,4rem);font-style:italic;line-height:1.05;margin:0 0 3vh}
+.edit p{font-size:clamp(1rem,2.65vh,1.55rem);line-height:1.55;color:#c9c5bd;margin:0 0 1.6vh}
+
+/* ato */
+.ato{align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.ato .bgim{position:absolute;inset:-8%;background-size:cover;background-position:center;filter:blur(38px) brightness(.3);opacity:.9}
+.ato .in{position:relative;padding:0 1.5rem}
+.ato .rom{font-size:clamp(5rem,30vh,20rem);line-height:.85;font-style:italic;color:transparent;-webkit-text-stroke:1px #77736c}
+.ato h2{font-size:clamp(2.2rem,9vh,6.5rem);font-weight:400;margin:2vh 0 2.5vh;letter-spacing:-.015em}
+.ato p{font-size:clamp(1rem,3vh,1.8rem);font-style:italic;color:#bdb9b0;max-width:34rem;margin:0 auto;line-height:1.45}
+
+/* fim */
+.fim{align-items:center;gap:clamp(1.5rem,4vw,5rem);padding:0 clamp(1.5rem,4vw,5rem)}
+.fim{--t:min(34vh,calc((100vw - 26rem)/var(--c)*16/9))}
+.grid{display:grid;grid-template-columns:repeat(var(--c),auto);gap:1vh;flex:none}
+.grid a{display:block;height:var(--t);aspect-ratio:9/16;overflow:hidden;cursor:pointer;position:relative;background:#111}
+.grid img{width:100%;height:100%;object-fit:cover;opacity:.82;transition:opacity .3s}
+.grid a:hover img{opacity:1}
+.grid a span{position:absolute;left:.5em;bottom:.4em;font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;color:#fff;text-shadow:0 0 4px #000}
+.fim .cr{flex:1;min-width:0}
+.fim h2{font-size:clamp(1.6rem,5.2vh,3.6rem);font-weight:400;line-height:1;margin:2.5vh 0 3vh}
+.fim h2 em{color:#bdb9b0}
+.fim p{font-size:clamp(.9rem,2.15vh,1.25rem);line-height:1.6;color:#c9c5bd;margin:0 0 1.6vh}
+.fim p.s{font-family:var(--sans);font-size:clamp(.68rem,1.5vh,.9rem);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);line-height:2}
+
+/* hud */
+.hud{position:fixed;left:0;right:0;bottom:0;z-index:5;pointer-events:none;font-family:var(--sans);font-size:clamp(.62rem,1.4vh,.82rem);letter-spacing:.24em;text-transform:uppercase;color:#d8d4cc;text-shadow:0 0 6px #000,0 0 2px #000}
+.hud .row{display:flex;justify-content:space-between;align-items:center;padding:0 clamp(1rem,2.2vw,2.5rem) 2.2vh}
+.hud button{pointer-events:auto;background:rgba(0,0,0,.5);border:1px solid #6b6862;color:inherit;font:inherit;width:2.6em;height:2.6em;border-radius:50%;cursor:pointer;margin-left:.6em;letter-spacing:0;text-shadow:inherit}
+.hud .volta{pointer-events:auto;color:inherit;text-decoration:none;opacity:.75}
+.hud .volta:hover,.hud .volta:focus-visible{opacity:1}
+.hud button:hover{border-color:#fff}
+.hud button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.bar{height:2px;background:var(--line)}
+.bar i{display:block;height:100%;background:#d8d4cc;width:0;transition:width .5s ease}
+
+@media (max-aspect-ratio:1/1){
+  html,body{overflow:auto;height:auto}
+  .pg,.pg.on{position:relative;opacity:1;visibility:visible;flex-direction:column;min-height:100vh;transition:none}
+  .ph,.pair .ph{height:auto;width:100%}
+  .ph img{transform:none}
+  .phs{flex-direction:column;width:100%}
+  .tx,.rev .tx{align-items:flex-start;text-align:left;gap:4vh;padding:2.5rem 1.25rem 3.5rem}
+  .pair .cap:last-child{text-align:left;align-self:flex-start}
+  .capa{flex-direction:column-reverse}
+  .edit{padding:3rem 1.25rem}.edit .cols{grid-template-columns:1fr}
+  .ato{padding:4rem 0}
+  .fim{flex-direction:column;padding:3rem 1.25rem;--t:auto}
+  .grid{grid-template-columns:repeat(3,1fr);width:100%}.grid a{height:auto}
+  .hud{display:none}
+}
+@media (prefers-reduced-motion:reduce){.pg,.pg.on,.ph img,.bar i{transition:none}.ph img{transform:none}}
+</style>
+</head>
+<body>
+<main id="m"></main>
+<div class="hud">
+  <div class="row">
+    <a class="volta" href="../index.html">&#8592; Portfólios</a>
+    <span><span id="ctr"></span>
+      <button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button>
+    </span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</div>
+<script>
+/*__IMGS__*/
+const ATOS={};for(const k in T.atos)ATOS[k]='Ato '+k+' — '+T.atos[k].titulo;
+const C={};for(const k in T.fotos)C[k]={h:T.fotos[k].titulo,p:T.fotos[k].legenda};
+const TIT=`${T.titulo} <em>${T.titulo_italico}</em>`;document.title=T.titulo+' '+T.titulo_italico+' — '+T.capa.autor;
+const P=T.paginas.map(p=>({t:{capa:'capa',editorial:'edit',ato:'ato',foto:'foto',final:'fim'}[p.tipo],a:p.ato,f:p.fotos}));
+const pad=n=>String(n).padStart(2,'0');
+const im=(n,alt)=>`<img src="${IMG[n]}" alt="${alt||C[n].h}">`;
+const cap=n=>`<div class="cap"><div class="num">${pad(n)}</div><h2>${C[n].h}</h2><p>${C[n].p}</p></div>`;
+let solo=0;const pageOf={};
+const html=P.map((p,i)=>{
+ if(p.t==='capa')return `<section class="pg capa rev"><figure class="ph">${im(T.capa.foto,'Foto de capa')}</figure>
+  <div class="tx" style="align-items:flex-start;text-align:left"><div class="lab">${T.capa.chamada}</div>
+  <div><h1>${TIT}</h1><div class="sub">${T.subtitulo}</div></div>
+  <div class="by"><b>${T.capa.autor}</b><br>${T.capa.linhas.join('<br>')}</div></div></section>`;
+ if(p.t==='edit')return `<section class="pg edit"><div class="lab">${T.editorial.chamada}</div><div class="cols">${T.editorial.blocos.map(b=>`<div><h3>${b.pergunta}</h3><p class="ans">${b.resposta}</p>${b.paragrafos.map(x=>`<p>${x}</p>`).join('')}</div>`).join('')}</div></section>`;
+ if(p.t==='ato')return `<section class="pg ato"><div class="bgim" style="background-image:url(${IMG[T.atos[p.a].fundo]})"></div>
+  <div class="in"><div class="rom">${p.a}</div><h2>${T.atos[p.a].titulo}</h2><p>${T.atos[p.a].frase}</p></div></section>`;
+ if(p.t==='foto'){
+  p.f.forEach(n=>pageOf[n]=i);
+  if(p.f.length===1){const r=(solo++%2)?' rev':'';
+   return `<section class="pg foto${r}"><figure class="ph">${im(p.f[0])}</figure><div class="tx"><div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[0])}</div></section>`;}
+  return `<section class="pg foto pair"><figure class="ph">${im(p.f[0])}</figure>
+   <div class="tx">${cap(p.f[0])}<div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[1])}</div><figure class="ph">${im(p.f[1])}</figure></section>`;
+ }
+ return `<section class="pg fim" style="--c:${Math.ceil(Object.keys(C).length/2)}"><div class="grid">${Object.keys(C).map(n=>`<a data-go="${n}" title="${C[n].h}">${im(n)}<span>${pad(n)}</span></a>`).join('')}</div>
+  <div class="cr"><div class="lab">${T.final.chamada}</div><h2>${TIT}</h2>
+  <p>${T.final.texto}</p>${T.final.creditos.map(c=>`<p class="s">${c.rotulo}<br><span style="color:var(--ink)">${c.linhas.join('<br>')}</span></p>`).join('')}</div></section>`;
+}).join('');
+const m=document.getElementById('m');m.innerHTML=html;
+const pgs=[...m.children],ctr=document.getElementById('ctr'),bar=document.getElementById('bar');
+const paged=()=>!matchMedia('(max-aspect-ratio:1/1)').matches;
+let cur=0;
+function go(i){
+ i=Math.max(0,Math.min(pgs.length-1,i));
+ if(!paged()){pgs[i].scrollIntoView({behavior:'smooth'});return;}
+ pgs[cur].classList.remove('on');cur=i;pgs[cur].classList.add('on');
+ ctr.textContent=pad(cur+1)+' / '+pad(pgs.length);
+ bar.style.width=((cur+1)/pgs.length*100)+'%';
+ try{history.replaceState(null,'','#'+(cur+1));}catch(e){}
+}
+function full(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+addEventListener('keydown',e=>{
+ if(e.key==='f'||e.key==='F'){full();return;}
+ if(!paged())return;
+ if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(cur+1);}
+ else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(cur-1);}
+ else if(e.key==='Home')go(0);else if(e.key==='End')go(pgs.length-1);
+});
+document.getElementById('pv').onclick=e=>{e.stopPropagation();go(cur-1);};
+document.getElementById('nx').onclick=e=>{e.stopPropagation();go(cur+1);};
+document.getElementById('fs').onclick=e=>{e.stopPropagation();full();};
+m.addEventListener('click',e=>{
+ const a=e.target.closest('[data-go]');
+ if(a){go(pageOf[a.dataset.go]);return;}
+ if(!paged())return;
+ go(cur+(e.clientX<innerWidth*.3?-1:1));
+});
+let tx=null;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+addEventListener('touchend',e=>{if(tx===null||!paged())return;const d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>50)go(cur+(d<0?1:-1));},{passive:true});
+let wl=0;addEventListener('wheel',e=>{if(!paged())return;const t=Date.now();if(t-wl<700||Math.abs(e.deltaY)<20)return;wl=t;go(cur+(e.deltaY>0?1:-1));},{passive:true});
+const h=parseInt(location.hash.slice(1),10);
+cur=0;pgs[0].classList.add('on');go(h>0?h-1:0);
+</script>
+</body>
+</html>
