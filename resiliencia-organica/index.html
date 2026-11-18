@@ -130,7 +130,7 @@ img{display:block}
   <div class="row">
     <a class="volta" href="../index.html">&#8592; Portfólios</a>
     <span><span id="ctr"></span>
-      <button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button>
+      <button id="ini" aria-label="Primeira página" title="Início (Home)">&#8676;</button><button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="ult" aria-label="Última página" title="Fim (End)">&#8677;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button>
     </span>
   </div>
   <div class="bar"><i id="bar"></i></div>
@@ -187,6 +187,8 @@ addEventListener('keydown',e=>{
 });
 document.getElementById('pv').onclick=e=>{e.stopPropagation();go(cur-1);};
 document.getElementById('nx').onclick=e=>{e.stopPropagation();go(cur+1);};
+document.getElementById('ini').onclick=e=>{e.stopPropagation();go(0);};
+document.getElementById('ult').onclick=e=>{e.stopPropagation();go(pgs.length-1);};
 document.getElementById('fs').onclick=e=>{e.stopPropagation();full();};
 m.addEventListener('click',e=>{
  const a=e.target.closest('[data-go]');
