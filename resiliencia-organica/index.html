@@ -92,45 +92,81 @@ img{display:block}
 .bar{height:2px;background:var(--line)}
 .bar i{display:block;height:100%;background:#d8d4cc;width:0;transition:width .5s ease}
 
+.seg{display:none}
+.hud #ixb{display:none}
+.ix{position:fixed;inset:0;z-index:10;background:rgba(8,8,8,.97);overflow-y:auto;padding:1.1rem 1.25rem 2.5rem;font-family:var(--sans)}
+.ix[hidden]{display:none}
+.ixh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem}
+.ix button{background:none;border:1px solid #6b6862;color:var(--ink);font:inherit;width:2.6rem;height:2.6rem;border-radius:50%;cursor:pointer}
+.ixa{display:block;font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--ink);margin:0 0 .7rem;cursor:pointer}
+.ix .grid{margin-bottom:1.8rem}
+.ix .volta{display:inline-block;margin-top:.4rem;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+
+/* celular: uma tela por vez, foto inteira com a legenda sobre o pe */
 @media (max-aspect-ratio:1/1){
-  html,body{overflow:auto;height:auto}
-  .pg,.pg.on{position:relative;opacity:1;visibility:visible;flex-direction:column;min-height:100vh;transition:none}
-  .ph,.pair .ph{height:auto;width:100%}
-  .ph img{transform:none}
-  .phs{flex-direction:column;width:100%}
-  .tx,.rev .tx{align-items:flex-start;text-align:left;gap:4vh;padding:2.5rem 1.25rem 3.5rem}
-  .pair .cap:last-child{text-align:left;align-self:flex-start}
-  .capa{flex-direction:column-reverse}
+  .pg{flex-direction:column;overflow-y:auto;overscroll-behavior:contain;transition:opacity .35s ease,visibility 0s .35s}
+  .pg.on{transition:opacity .35s ease}
+  .ph,.pair .ph{position:absolute;inset:0;height:auto;width:auto;aspect-ratio:auto;background:var(--bg)}
+  .ph img{object-fit:contain;object-position:50% 0;transform:none}
+  .foto .tx,.capa .tx{position:absolute;left:0;right:0;bottom:0;flex:none;align-items:flex-start;text-align:left;justify-content:flex-end;gap:.7rem;
+    padding:6rem 1.25rem calc(4.7rem + env(safe-area-inset-bottom));
+    background:linear-gradient(transparent,rgba(0,0,0,.74) 36%,rgba(0,0,0,.93));transition:opacity .3s}
+  body.limpo .foto .tx{opacity:0}
+  body.limpo .hud .row{visibility:hidden}
+  .lab{font-size:.68rem}
+  .cap{max-width:none}
+  .num{font-size:2.8rem;margin-bottom:.35rem;-webkit-text-stroke-color:#b5b1a9}
+  .cap h2{font-size:clamp(1.7rem,8.5vw,3rem);margin-bottom:.6rem}
+  .cap p{font-size:1.02rem;line-height:1.45;color:#dedad2}
+  .capa .tx{gap:1.2rem}
   .capa h1{font-size:clamp(2.4rem,15vw,6rem);overflow-wrap:anywhere}
-  .capa .sub{font-size:clamp(1.1rem,5.5vw,2rem);margin-top:1.2rem}
-  .num,.pair .num{font-size:clamp(4rem,34vw,10rem);margin-bottom:.6rem}
-  .cap h2,.pair .cap h2{font-size:clamp(1.9rem,10.5vw,4rem);margin-bottom:.9rem}
-  .cap p,.pair .cap p{font-size:1.1rem}
+  .capa .sub{font-size:clamp(1.05rem,5vw,2rem);margin-top:.8rem}
+  .capa .by{font-size:.7rem;line-height:1.8}
+  .edit{justify-content:flex-start;padding:3.5rem 1.25rem calc(5rem + env(safe-area-inset-bottom))}
+  .edit::before,.edit::after{content:"";flex:1}
+  .edit .cols{grid-template-columns:1fr;margin-top:2rem}
+  .edit .ans{font-size:clamp(1.7rem,9vw,3rem)}
+  .edit p{font-size:1.1rem}
   .ato .rom{font-size:clamp(5rem,42vw,13rem)}
   .ato h2{font-size:clamp(2.2rem,12.5vw,5rem)}
   .ato p{font-size:1.15rem}
-  .edit .ans{font-size:clamp(1.7rem,9vw,3rem)}
-  .edit p{font-size:1.1rem}
+  .fim{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:2rem;padding:3.5rem 1.25rem calc(5.5rem + env(safe-area-inset-bottom));--t:auto}
+  .fim .cr{flex:none}
   .fim h2{font-size:clamp(1.6rem,9vw,3rem)}
   .fim p{font-size:1.05rem}
   .fim p.s{font-size:.75rem}
   .fim .volta-cel{display:block}
-  .edit{padding:3rem 1.25rem}.edit .cols{grid-template-columns:1fr}
-  .ato{padding:4rem 0}
-  .fim{flex-direction:column;padding:3rem 1.25rem;--t:auto}
-  .grid{grid-template-columns:repeat(3,1fr);width:100%}.grid a{height:auto}
-  .hud{display:none}
+  .grid{grid-template-columns:repeat(4,1fr);width:100%;gap:.35rem}.grid a{height:auto}
+
+  .hud{font-size:.8rem;letter-spacing:.12em;background:linear-gradient(transparent,rgba(0,0,0,.88) 55%)}
+  body.limpo .hud{background:none}
+  .hud .row{padding:1.6rem 1rem calc(.9rem + env(safe-area-inset-bottom))}
+  .hud .volta,.hud #fs,.bar{display:none}
+  .hud .ctl{display:flex;align-items:center;flex:1}
+  .hud #ctr{margin-right:auto}
+  .hud button{width:2.9em;height:2.9em}
+  .hud #ixb{display:inline-block}
+  .seg{display:flex;gap:2px;position:fixed;top:0;left:0;right:0;z-index:5;pointer-events:none;padding:calc(.55rem + env(safe-area-inset-top)) .6rem 0}
+  .seg i{flex:1;height:2px;background:rgba(255,255,255,.3);box-shadow:0 0 3px rgba(0,0,0,.7)}
+  .seg i.on{background:#fff}
+  .seg i.g{margin-left:5px}
 }
 @media (prefers-reduced-motion:reduce){.pg,.pg.on,.ph img,.bar i{transition:none}.ph img{transform:none}}
 </style>
 </head>
 <body>
 <main id="m"></main>
+<div class="seg" id="seg"></div>
+<div class="ix" id="ix" hidden role="dialog" aria-label="Índice">
+  <div class="ixh"><span class="lab">Índice</span><button id="ixx" aria-label="Fechar índice">&#10005;</button></div>
+  <div id="ixl"></div>
+  <a class="volta" href="../index.html">&#8592; Portfólios</a>
+</div>
 <div class="hud">
   <div class="row">
     <a class="volta" href="../index.html">&#8592; Portfólios</a>
-    <span><span id="ctr"></span>
-      <button id="ini" aria-label="Primeira página" title="Início (Home)">&#8676;</button><button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="ult" aria-label="Última página" title="Fim (End)">&#8677;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button>
+    <span class="ctl"><span id="ctr"></span>
+      <button id="ini" aria-label="Primeira página" title="Início (Home)">&#8676;</button><button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="ult" aria-label="Última página" title="Fim (End)">&#8677;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button><button id="ixb" aria-label="Índice">&#9638;</button>
     </span>
   </div>
   <div class="bar"><i id="bar"></i></div>
@@ -141,67 +177,104 @@ const T={"titulo": "Resiliência", "titulo_italico": "Orgânica", "subtitulo": "
 const ATOS={};for(const k in T.atos)ATOS[k]='Ato '+k+' — '+T.atos[k].titulo;
 const C={};for(const k in T.fotos)C[k]={h:T.fotos[k].titulo,p:T.fotos[k].legenda};
 const TIT=`${T.titulo} <em>${T.titulo_italico}</em>`;document.title=T.titulo+' '+T.titulo_italico+' — '+T.capa.autor;
-const P=T.paginas.map(p=>({t:{capa:'capa',editorial:'edit',ato:'ato',foto:'foto',final:'fim'}[p.tipo],a:p.ato,f:p.fotos}));
+const P=T.paginas.map((p,i)=>({t:{capa:'capa',editorial:'edit',ato:'ato',foto:'foto',final:'fim'}[p.tipo],a:p.ato,f:p.fotos,src:i}));
 const pad=n=>String(n).padStart(2,'0');
 const im=(n,alt)=>`<img src="${IMG[n]}" alt="${alt||C[n].h}">`;
 const cap=n=>`<div class="cap"><div class="num">${pad(n)}</div><h2>${C[n].h}</h2><p>${C[n].p}</p></div>`;
-let solo=0;const pageOf={};
-const html=P.map((p,i)=>{
- if(p.t==='capa')return `<section class="pg capa rev"><figure class="ph">${im(T.capa.foto,'Foto de capa')}</figure>
-  <div class="tx" style="align-items:flex-start;text-align:left"><div class="lab">${T.capa.chamada}</div>
-  <div><h1>${TIT}</h1><div class="sub">${T.subtitulo}</div></div>
-  <div class="by"><b>${T.capa.autor}</b><br>${T.capa.linhas.join('<br>')}</div></div></section>`;
- if(p.t==='edit')return `<section class="pg edit"><div class="lab">${T.editorial.chamada}</div><div class="cols">${T.editorial.blocos.map(b=>`<div><h3>${b.pergunta}</h3><p class="ans">${b.resposta}</p>${b.paragrafos.map(x=>`<p>${x}</p>`).join('')}</div>`).join('')}</div></section>`;
- if(p.t==='ato')return `<section class="pg ato"><div class="bgim" style="background-image:url(${IMG[T.atos[p.a].fundo]})"></div>
-  <div class="in"><div class="rom">${p.a}</div><h2>${T.atos[p.a].titulo}</h2><p>${T.atos[p.a].frase}</p></div></section>`;
- if(p.t==='foto'){
-  p.f.forEach(n=>pageOf[n]=i);
-  if(p.f.length===1){const r=(solo++%2)?' rev':'';
-   return `<section class="pg foto${r}"><figure class="ph">${im(p.f[0])}</figure><div class="tx"><div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[0])}</div></section>`;}
-  return `<section class="pg foto pair"><figure class="ph">${im(p.f[0])}</figure>
-   <div class="tx">${cap(p.f[0])}<div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[1])}</div><figure class="ph">${im(p.f[1])}</figure></section>`;
- }
- return `<section class="pg fim" style="--c:${Math.ceil(Object.keys(C).length/2)}"><div class="grid">${Object.keys(C).map(n=>`<a data-go="${n}" title="${C[n].h}">${im(n)}<span>${pad(n)}</span></a>`).join('')}</div>
-  <div class="cr"><div class="lab">${T.final.chamada}</div><h2>${TIT}</h2>
-  <p>${T.final.texto}</p>${T.final.creditos.map(c=>`<p class="s">${c.rotulo}<br><span style="color:var(--ink)">${c.linhas.join('<br>')}</span></p>`).join('')}<p class="s volta-cel"><a href="../index.html">&#8592; Portfólios</a></p></div></section>`;
-}).join('');
-const m=document.getElementById('m');m.innerHTML=html;
-const pgs=[...m.children],ctr=document.getElementById('ctr'),bar=document.getElementById('bar');
-const paged=()=>!matchMedia('(max-aspect-ratio:1/1)').matches;
-let cur=0;
+const $=id=>document.getElementById(id);
+const m=$('m'),ctr=$('ctr'),bar=$('bar'),seg=$('seg'),ix=$('ix'),ixl=$('ixl');
+const mq=matchMedia('(max-aspect-ratio:1/1)');
+let cel=mq.matches,pages=[],pgs=[],pageOf={},cur=0,limpo=false,ixok=false;
+/* no celular cada tela leva uma foto so, e o editorial vira uma tela por pergunta */
+function lista(){
+ if(!cel)return P;
+ const r=[];
+ P.forEach(p=>{
+  if(p.t==='foto'&&p.f.length>1)p.f.forEach(n=>r.push({...p,f:[n]}));
+  else if(p.t==='edit')T.editorial.blocos.forEach((b,k)=>r.push({...p,b:k}));
+  else r.push(p);
+ });
+ return r;
+}
+function render(){
+ pages=lista();pageOf={};ixok=false;let solo=0;
+ m.innerHTML=pages.map((p,i)=>{
+  if(p.t==='capa')return `<section class="pg capa rev"><figure class="ph">${im(T.capa.foto,'Foto de capa')}</figure>
+   <div class="tx" style="align-items:flex-start;text-align:left"><div class="lab">${T.capa.chamada}</div>
+   <div><h1>${TIT}</h1><div class="sub">${T.subtitulo}</div></div>
+   <div class="by"><b>${T.capa.autor}</b><br>${T.capa.linhas.join('<br>')}</div></div></section>`;
+  if(p.t==='edit'){const bl=p.b===undefined?T.editorial.blocos:[T.editorial.blocos[p.b]];
+   return `<section class="pg edit"><div class="lab">${T.editorial.chamada}</div><div class="cols">${bl.map(b=>`<div><h3>${b.pergunta}</h3><p class="ans">${b.resposta}</p>${b.paragrafos.map(x=>`<p>${x}</p>`).join('')}</div>`).join('')}</div></section>`;}
+  if(p.t==='ato')return `<section class="pg ato"><div class="bgim" style="background-image:url(${IMG[T.atos[p.a].fundo]})"></div>
+   <div class="in"><div class="rom">${p.a}</div><h2>${T.atos[p.a].titulo}</h2><p>${T.atos[p.a].frase}</p></div></section>`;
+  if(p.t==='foto'){
+   p.f.forEach(n=>pageOf[n]=i);
+   if(p.f.length===1){const r=(solo++%2)?' rev':'';
+    return `<section class="pg foto${r}"><figure class="ph">${im(p.f[0])}</figure><div class="tx"><div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[0])}</div></section>`;}
+   return `<section class="pg foto pair"><figure class="ph">${im(p.f[0])}</figure>
+    <div class="tx">${cap(p.f[0])}<div class="lab">${ATOS[p.a]||''}</div>${cap(p.f[1])}</div><figure class="ph">${im(p.f[1])}</figure></section>`;
+  }
+  return `<section class="pg fim" style="--c:${Math.ceil(Object.keys(C).length/2)}"><div class="grid">${Object.keys(C).map(n=>`<a data-go="${n}" title="${C[n].h}">${im(n)}<span>${pad(n)}</span></a>`).join('')}</div>
+   <div class="cr"><div class="lab">${T.final.chamada}</div><h2>${TIT}</h2>
+   <p>${T.final.texto}</p>${T.final.creditos.map(c=>`<p class="s">${c.rotulo}<br><span style="color:var(--ink)">${c.linhas.join('<br>')}</span></p>`).join('')}<p class="s volta-cel"><a href="../index.html">&#8592; Portfólios</a></p></div></section>`;
+ }).join('');
+ pgs=[...m.children];
+ /* um tracinho por tela, com folga entre os grupos (abertura, cada ato, final) */
+ const g=p=>p.a||p.t;
+ seg.innerHTML=pages.map((p,i)=>`<i${i&&g(p)!==g(pages[i-1])?' class="g"':''}></i>`).join('');
+}
 function go(i){
  i=Math.max(0,Math.min(pgs.length-1,i));
- if(!paged()){pgs[i].scrollIntoView({behavior:'smooth'});return;}
  pgs[cur].classList.remove('on');cur=i;pgs[cur].classList.add('on');
  ctr.textContent=pad(cur+1)+' / '+pad(pgs.length);
  bar.style.width=((cur+1)/pgs.length*100)+'%';
+ [...seg.children].forEach((s,k)=>s.classList.toggle('on',k<=cur));
+ document.body.classList.toggle('limpo',limpo&&pages[cur].t==='foto');
  try{history.replaceState(null,'','#'+(cur+1));}catch(e){}
 }
 function full(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+function indice(abre){
+ if(abre&&!ixok){
+  let h='',ab=false;
+  pages.forEach((p,i)=>{
+   if(p.t==='ato'){if(ab)h+='</div>';ab=false;h+=`<a class="ixa" data-pg="${i}">${ATOS[p.a]}</a>`;}
+   else if(p.t==='foto'){if(!ab){h+='<div class="grid">';ab=true;}h+=p.f.map(n=>`<a data-pg="${i}" title="${C[n].h}">${im(n)}<span>${pad(n)}</span></a>`).join('');}
+  });
+  ixl.innerHTML=h+(ab?'</div>':'');ixok=true;
+ }
+ ix.hidden=!abre;
+}
 addEventListener('keydown',e=>{
+ if(!ix.hidden){if(e.key==='Escape')indice(false);return;}
  if(e.key==='f'||e.key==='F'){full();return;}
- if(!paged())return;
  if(['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(cur+1);}
  else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(cur-1);}
  else if(e.key==='Home')go(0);else if(e.key==='End')go(pgs.length-1);
 });
-document.getElementById('pv').onclick=e=>{e.stopPropagation();go(cur-1);};
-document.getElementById('nx').onclick=e=>{e.stopPropagation();go(cur+1);};
-document.getElementById('ini').onclick=e=>{e.stopPropagation();go(0);};
-document.getElementById('ult').onclick=e=>{e.stopPropagation();go(pgs.length-1);};
-document.getElementById('fs').onclick=e=>{e.stopPropagation();full();};
+const bt=(id,f)=>$(id).onclick=e=>{e.stopPropagation();f();};
+bt('pv',()=>go(cur-1));bt('nx',()=>go(cur+1));
+bt('ini',()=>go(0));bt('ult',()=>go(pgs.length-1));
+bt('fs',full);bt('ixb',()=>indice(true));bt('ixx',()=>indice(false));
+ix.addEventListener('click',e=>{const a=e.target.closest('[data-pg]');if(a){indice(false);go(+a.dataset.pg);}});
 m.addEventListener('click',e=>{
  const a=e.target.closest('[data-go]');
  if(a){go(pageOf[a.dataset.go]);return;}
- if(!paged())return;
- go(cur+(e.clientX<innerWidth*.3?-1:1));
+ if(e.target.closest('a[href]'))return;
+ const x=e.clientX/innerWidth;
+ if(!cel){go(cur+(x<.3?-1:1));return;}
+ /* celular: bordas viram a pagina; o meio de uma foto esconde ou mostra a legenda */
+ if(x<.3)go(cur-1);else if(x>.7||pages[cur].t!=='foto')go(cur+1);
+ else{limpo=!limpo;document.body.classList.toggle('limpo',limpo);}
 });
-let tx=null;
-addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
-addEventListener('touchend',e=>{if(tx===null||!paged())return;const d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>50)go(cur+(d<0?1:-1));},{passive:true});
-let wl=0;addEventListener('wheel',e=>{if(!paged())return;const t=Date.now();if(t-wl<700||Math.abs(e.deltaY)<20)return;wl=t;go(cur+(e.deltaY>0?1:-1));},{passive:true});
+let tx=null,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+addEventListener('touchend',e=>{if(tx===null||!ix.hidden)return;const t=e.changedTouches[0],d=t.clientX-tx,v=t.clientY-ty;tx=null;if(Math.abs(d)>50&&Math.abs(d)>Math.abs(v)*1.2)go(cur+(d<0?1:-1));},{passive:true});
+let wl=0;addEventListener('wheel',e=>{if(cel||!ix.hidden)return;const t=Date.now();if(t-wl<700||Math.abs(e.deltaY)<20)return;wl=t;go(cur+(e.deltaY>0?1:-1));},{passive:true});
+/* ao girar o aparelho a lista de telas muda: remonta e volta para a mesma pagina */
+mq.addEventListener('change',()=>{const s=pages[cur].src;cel=mq.matches;indice(false);render();cur=0;go(Math.max(0,pages.findIndex(p=>p.src===s)));});
+render();
 const h=parseInt(location.hash.slice(1),10);
-cur=0;pgs[0].classList.add('on');go(h>0?h-1:0);
+go(h>0?h-1:0);
 </script>
 </body>
 </html>
