@@ -8,14 +8,14 @@
     "autor": "Bruno Roth",
     "linhas": [
       "Trabalho de conclusão de curso",
-      "Sombras da Alemanha e Luzes da Ásia"
+      "Curso Sombras da Alemanha e Luzes da Ásia"
     ]
   },
   "editorial": {
     "chamada": "A série em duas perguntas",
     "blocos": [
       {
-        "pergunta": "Qual é a história que contarei?",
+        "pergunta": "Que história esta série conta?",
         "resposta": "É sobre um lugar.",
         "paragrafos": [
           "Um lugar antigo, de paredes manchadas, beirais gastos, fios e chaminés. Tudo ali foi construído para ficar, e tudo envelhece.",
@@ -23,11 +23,11 @@
         ]
       },
       {
-        "pergunta": "Qual é o viés que darei?",
+        "pergunta": "Com que olhar?",
         "resposta": "Sombra e luz.",
         "paragrafos": [
           "A sombra é o tempo sobre a matéria: o limo, a rachadura, o vidro quebrado. A luz é o que nasce exatamente ali.",
-          "O olhar é otimista. Doze fotografias em preto e branco, em três atos, sobre algo que não desiste."
+          "Doze fotografias em preto e branco, em três atos, sobre algo que não desiste."
         ]
       }
     ]
@@ -52,7 +52,7 @@
   "fotos": {
     "1": {
       "titulo": "Cúpula",
-      "legenda": "A pedra aponta para o céu, firme, feita para durar. Mas olhe de novo: ao pé da cúpula, o verde já começou."
+      "legenda": "A pedra aponta para o céu, firme. Mas olhe de novo: ao pé da cúpula, o verde já começou."
     },
     "2": {
       "titulo": "Beiral",
@@ -80,7 +80,7 @@
     },
     "8": {
       "titulo": "Telhado",
-      "legenda": "Vidraças quebradas, limo escorrendo pela parede e, sobre as telhas, um jardim que ninguém plantou."
+      "legenda": "Vidraças quebradas, a parede escorrida de umidade. Sobre as telhas, o mato fez canteiro."
     },
     "9": {
       "titulo": "Chaminé",
@@ -101,7 +101,7 @@
   },
   "final": {
     "chamada": "A série",
-    "texto": "Doze fotografias sobre a vida que insiste em voltar onde a construção envelhece.",
+    "texto": "A vida insiste em voltar onde a construção envelhece.",
     "creditos": [
       {
         "rotulo": "Fotografia e edição",
