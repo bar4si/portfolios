@@ -11,6 +11,7 @@
   --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);overflow:hidden}
 body{-webkit-font-smoothing:antialiased;cursor:default;user-select:none}
 img{display:block}
@@ -229,8 +230,12 @@ function render(){
 function ajusta(){
  const h=m.querySelector('.capa h1');if(!h)return;
  h.style.fontSize='';
- const tx=h.closest('.tx'),cs=getComputedStyle(tx),w=tx.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
- if(h.scrollWidth>w)h.style.fontSize=(parseFloat(getComputedStyle(h).fontSize)*w/h.scrollWidth*.98)+'px';
+ const tx=h.closest('.tx'),cs=getComputedStyle(tx),w=tx.getBoundingClientRect().width-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+ if(w<=0)return;
+ /* mede o texto como ele aparece de fato e repete: o aparelho pode ampliar a letra por conta propria (tamanho de fonte do sistema) */
+ const r=document.createRange();r.selectNodeContents(h);
+ let s=parseFloat(getComputedStyle(h).fontSize);
+ for(let k=0;k<8;k++){const l=r.getBoundingClientRect().width;if(l<=w)break;s*=w/l*.98;h.style.fontSize=s+'px';}
 }
 function go(i){
  i=Math.max(0,Math.min(pgs.length-1,i));
@@ -281,7 +286,8 @@ addEventListener('touchend',e=>{if(tx===null||!ix.hidden)return;const t=e.change
 let wl=0;addEventListener('wheel',e=>{if(cel||!ix.hidden)return;const t=Date.now();if(t-wl<700||Math.abs(e.deltaY)<20)return;wl=t;go(cur+(e.deltaY>0?1:-1));},{passive:true});
 /* ao girar o aparelho a lista de telas muda: remonta e volta para a mesma pagina */
 mq.addEventListener('change',()=>{const s=pages[cur].src;cel=mq.matches;indice(false);render();ajusta();cur=0;go(Math.max(0,pages.findIndex(p=>p.src===s)));});
-render();ajusta();addEventListener('resize',ajusta);
+render();ajusta();addEventListener('resize',ajusta);addEventListener('load',ajusta);
+if(window.ResizeObserver)new ResizeObserver(ajusta).observe(m);
 const h=parseInt(location.hash.slice(1),10);
 go(h>0?h-1:0);
 </script>
