@@ -87,6 +87,8 @@ img{display:block}
 .hud button{pointer-events:auto;background:rgba(0,0,0,.5);border:1px solid #6b6862;color:inherit;font:inherit;width:2.6em;height:2.6em;border-radius:50%;cursor:pointer;margin-left:.6em;letter-spacing:0;text-shadow:inherit}
 .hud .volta{pointer-events:auto;color:inherit;text-decoration:none;opacity:.75}
 .hud .volta:hover,.hud .volta:focus-visible{opacity:1}
+.hud button,.ix button{display:inline-flex;align-items:center;justify-content:center;padding:0;vertical-align:middle}
+.hud button svg,.ix button svg{width:1.4em;height:1.4em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 2px #000)}
 .hud button:hover{border-color:#fff}
 .hud button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .bar{height:2px;background:var(--line)}
@@ -145,7 +147,7 @@ img{display:block}
   .hud .ctl{display:flex;align-items:center;flex:1}
   .hud #ctr{margin-right:auto}
   .hud button{width:2.9em;height:2.9em}
-  .hud #ixb{display:inline-block}
+  .hud #ixb{display:inline-flex}
   .seg{display:flex;gap:2px;position:fixed;top:0;left:0;right:0;z-index:5;pointer-events:none;padding:calc(.55rem + env(safe-area-inset-top)) .6rem 0}
   .seg i{flex:1;height:2px;background:rgba(255,255,255,.3);box-shadow:0 0 3px rgba(0,0,0,.7)}
   .seg i.on{background:#fff}
@@ -158,7 +160,7 @@ img{display:block}
 <main id="m"></main>
 <div class="seg" id="seg"></div>
 <div class="ix" id="ix" hidden role="dialog" aria-label="Índice">
-  <div class="ixh"><span class="lab">Índice</span><button id="ixx" aria-label="Fechar índice">&#10005;</button></div>
+  <div class="ixh"><span class="lab">Índice</span><button id="ixx" aria-label="Fechar índice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div id="ixl"></div>
   <a class="volta" href="../index.html">&#8592; Portfólios</a>
 </div>
@@ -166,7 +168,7 @@ img{display:block}
   <div class="row">
     <a class="volta" href="../index.html">&#8592; Portfólios</a>
     <span class="ctl"><span id="ctr"></span>
-      <button id="ini" aria-label="Primeira página" title="Início (Home)">&#8676;</button><button id="pv" aria-label="Página anterior">&#8592;</button><button id="nx" aria-label="Próxima página">&#8594;</button><button id="ult" aria-label="Última página" title="Fim (End)">&#8677;</button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)">&#x26F6;</button><button id="ixb" aria-label="Índice">&#9638;</button>
+      <button id="ini" aria-label="Primeira página" title="Início (Home)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M18 6l-6 6 6 6"/></svg></button><button id="pv" aria-label="Página anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button id="nx" aria-label="Próxima página"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><button id="ult" aria-label="Última página" title="Fim (End)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M6 6l6 6-6 6"/></svg></button><button id="fs" aria-label="Tela cheia" title="Tela cheia (F)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button><button id="ixb" aria-label="Índice"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></button>
     </span>
   </div>
   <div class="bar"><i id="bar"></i></div>
