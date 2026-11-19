@@ -115,13 +115,13 @@ img{display:block}
     background:linear-gradient(transparent,rgba(0,0,0,.74) 36%,rgba(0,0,0,.93));transition:opacity .3s}
   body.limpo .foto .tx{opacity:0}
   body.limpo .hud .row{visibility:hidden}
-  .lab{font-size:.68rem}
+  .lab{font-size:.68rem;letter-spacing:.2em}
   .cap{max-width:none}
   .num{font-size:2.8rem;margin-bottom:.35rem;-webkit-text-stroke-color:#b5b1a9}
   .cap h2{font-size:clamp(1.7rem,8.5vw,3rem);margin-bottom:.6rem}
   .cap p{font-size:1.02rem;line-height:1.45;color:#dedad2}
   .capa .tx{gap:1.2rem}
-  .capa h1{font-size:clamp(2.4rem,15vw,6rem);overflow-wrap:anywhere}
+  .capa h1{font-size:clamp(2.4rem,15vw,6rem)}
   .capa .sub{font-size:clamp(1.05rem,5vw,2rem);margin-top:.8rem}
   .capa .by{font-size:.7rem;line-height:1.8}
   .edit{justify-content:flex-start;padding:3.5rem 1.25rem calc(5rem + env(safe-area-inset-bottom))}
@@ -225,6 +225,13 @@ function render(){
  const g=p=>p.a||p.t;
  seg.innerHTML=pages.map((p,i)=>`<i${i&&g(p)!==g(pages[i-1])?' class="g"':''}></i>`).join('');
 }
+/* a fonte muda de aparelho para aparelho: encolhe o titulo da capa ate a maior palavra caber na linha */
+function ajusta(){
+ const h=m.querySelector('.capa h1');if(!h)return;
+ h.style.fontSize='';
+ const tx=h.closest('.tx'),cs=getComputedStyle(tx),w=tx.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+ if(h.scrollWidth>w)h.style.fontSize=(parseFloat(getComputedStyle(h).fontSize)*w/h.scrollWidth*.98)+'px';
+}
 function go(i){
  i=Math.max(0,Math.min(pgs.length-1,i));
  pgs[cur].classList.remove('on');cur=i;pgs[cur].classList.add('on');
@@ -273,8 +280,8 @@ addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].client
 addEventListener('touchend',e=>{if(tx===null||!ix.hidden)return;const t=e.changedTouches[0],d=t.clientX-tx,v=t.clientY-ty;tx=null;if(Math.abs(d)>50&&Math.abs(d)>Math.abs(v)*1.2)go(cur+(d<0?1:-1));},{passive:true});
 let wl=0;addEventListener('wheel',e=>{if(cel||!ix.hidden)return;const t=Date.now();if(t-wl<700||Math.abs(e.deltaY)<20)return;wl=t;go(cur+(e.deltaY>0?1:-1));},{passive:true});
 /* ao girar o aparelho a lista de telas muda: remonta e volta para a mesma pagina */
-mq.addEventListener('change',()=>{const s=pages[cur].src;cel=mq.matches;indice(false);render();cur=0;go(Math.max(0,pages.findIndex(p=>p.src===s)));});
-render();
+mq.addEventListener('change',()=>{const s=pages[cur].src;cel=mq.matches;indice(false);render();ajusta();cur=0;go(Math.max(0,pages.findIndex(p=>p.src===s)));});
+render();ajusta();addEventListener('resize',ajusta);
 const h=parseInt(location.hash.slice(1),10);
 go(h>0?h-1:0);
 </script>
