@@ -7,7 +7,7 @@
     "chamada": "Ensaio fotográfico · Novembro de 2026",
     "autor": "Bruno Roth",
     "linhas": [
-      "Trabalho de conclusão de curso",
+      "Trabalho de conclusão",
       "Curso Sombras da Alemanha e Luzes da Ásia"
     ]
   },
@@ -105,10 +105,7 @@
     "creditos": [
       {
         "rotulo": "Fotografia e edição",
-        "linhas": [
-          "Bruno Roth",
-          "@brunofroth"
-        ]
+        "linhas": ["Bruno Roth", "@brunofroth"]
       },
       {
         "rotulo": "Trabalho de conclusão de curso",
@@ -120,20 +117,20 @@
     ]
   },
   "paginas": [
-    {"tipo": "capa"},
-    {"tipo": "editorial"},
-    {"tipo": "ato", "ato": "I"},
-    {"tipo": "foto", "ato": "I", "fotos": [1]},
-    {"tipo": "ato", "ato": "II"},
-    {"tipo": "foto", "ato": "II", "fotos": [2]},
-    {"tipo": "foto", "ato": "II", "fotos": [3, 4]},
-    {"tipo": "foto", "ato": "II", "fotos": [5]},
-    {"tipo": "foto", "ato": "II", "fotos": [6, 7]},
-    {"tipo": "ato", "ato": "III"},
-    {"tipo": "foto", "ato": "III", "fotos": [8]},
-    {"tipo": "foto", "ato": "III", "fotos": [9]},
-    {"tipo": "foto", "ato": "III", "fotos": [10, 11]},
-    {"tipo": "foto", "ato": "III", "fotos": [12]},
-    {"tipo": "final"}
+    { "tipo": "capa" },
+    { "tipo": "editorial" },
+    { "tipo": "ato", "ato": "I" },
+    { "tipo": "foto", "ato": "I", "fotos": [1] },
+    { "tipo": "ato", "ato": "II" },
+    { "tipo": "foto", "ato": "II", "fotos": [2] },
+    { "tipo": "foto", "ato": "II", "fotos": [3, 4] },
+    { "tipo": "foto", "ato": "II", "fotos": [5] },
+    { "tipo": "foto", "ato": "II", "fotos": [6, 7] },
+    { "tipo": "ato", "ato": "III" },
+    { "tipo": "foto", "ato": "III", "fotos": [8] },
+    { "tipo": "foto", "ato": "III", "fotos": [9] },
+    { "tipo": "foto", "ato": "III", "fotos": [10, 11] },
+    { "tipo": "foto", "ato": "III", "fotos": [12] },
+    { "tipo": "final" }
   ]
 }
